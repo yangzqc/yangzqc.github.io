@@ -1,11 +1,15 @@
 import { defaultTheme } from "@vuepress/theme-default";
 import { defineUserConfig } from "vuepress";
+import { photoSwipePlugin } from "@vuepress/plugin-photo-swipe";
+import { nprogressPlugin } from "@vuepress/plugin-nprogress";
+import { mediumZoomPlugin } from "@vuepress/plugin-medium-zoom";
 import { viteBundler } from "@vuepress/bundler-vite";
 
 export default defineUserConfig({
   lang: "en-US",
 
   title: "yangzqc",
+
   description: "Yang Ziqiang's Wonderful Journey",
 
   base: "/",
@@ -15,6 +19,8 @@ export default defineUserConfig({
 
     navbar: ["/", "/beijing/index", "/shenzhen/index"],
   }),
+
+  plugins: [photoSwipePlugin(), nprogressPlugin(), mediumZoomPlugin()],
 
   bundler: viteBundler(),
 });

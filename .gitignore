@@ -1,8 +1,4 @@
 node_modules/
 
-docs/.vuepress/.cache
-
-docs/.vuepress/.temp/*
-!docs/.vuepress/.temp/styles/
-
-docs/.vuepress/dist
+docs/.vuepress/*
+!docs/.vuepress/styles
