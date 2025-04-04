@@ -8,7 +8,7 @@ export default defineUserConfig({
   title: "yangzqc",
   description: "Yang Ziqiang's Wonderful Journey",
 
-  base: "/",
+  base: "/yangzqc.github.io/",
 
   theme: defaultTheme({
     logo: "https://vuejs.press/images/hero.png",
