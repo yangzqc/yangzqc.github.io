@@ -16,6 +16,18 @@ title: 深圳
   </div>
 </div>
 
+@tab 凤凰山
+
+<div class="grid-container">
+  <div
+    v-for="(item, index) in fengHuangShanItems"
+    :key="index"
+    class="grid-item"
+  >
+    <img :src="item.imageUrl" :alt="item.altText" />
+  </div>
+</div>
+
 :::
 
 <script setup>
@@ -33,6 +45,24 @@ const gongYuanItems = ref([
   { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gongyuan-09.jpg", altText: "图片9" },
   { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gongyuan-10.jpg", altText: "图片10" },
 ]);
+
+// 凤凰山
+const getFengHuangShanItem = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/fenghuangshan/';
+  const arr = [];
+
+  Array.from({ length: 10 }).forEach((ele, idx) => {
+    const imgName = `fenghuangshan-${idx < 9 ? 0 : ''}${idx + 1}`;
+    arr.push({
+      imageUrl: `${prefix}${imgName}.jpg`,
+      altText: imgName
+    })
+  });
+
+  return arr;
+}
+
+const fengHuangShanItems = ref(getFengHuangShanItem());
 
 </script>
 
