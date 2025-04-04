@@ -48,9 +48,9 @@ import { ref } from 'vue';
 const yiHeYuanItems = ref([
   { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/yiheyuan-01.jpg", altText: "图片1" },
   { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/yiheyuan-02.jpg", altText: "图片2" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/yiheyuan-03.jpg", altText: "图片3" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/yiheyuan-04.jpg", altText: "图片4" },
   { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/yiheyuan-05.jpg", altText: "图片5" },
+  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/yiheyuan-04.jpg", altText: "图片4" },
+  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/yiheyuan-03.jpg", altText: "图片3" },
   { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/yiheyuan-06.jpg", altText: "图片6" },
 ]);
 
@@ -76,9 +76,9 @@ const miaoFengShanItems = ref([
 <style scoped>
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: .75rem;
+  /* padding: 20px; */
 }
 
 .grid-item {
@@ -90,7 +90,6 @@ const miaoFengShanItems = ref([
 
 .grid-item img {
   width: 100%;
-  height: 250px;
   object-fit: cover;
   display: block;
 }
