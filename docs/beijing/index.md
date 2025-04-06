@@ -1,5 +1,6 @@
 ---
 title: 北京
+sidebar: false
 ---
 
 ::: tabs
