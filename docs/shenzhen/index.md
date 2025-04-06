@@ -29,6 +29,30 @@ sidebar: false
   </div>
 </div>
 
+@tab 梧桐山
+
+<div class="grid-container">
+  <div
+    v-for="(item, index) in wuTongShanItems"
+    :key="index"
+    class="grid-item"
+  >
+    <img :src="item.imageUrl" :alt="item.altText" />
+  </div>
+</div>
+
+@tab 羊台山
+
+<div class="grid-container">
+  <div
+    v-for="(item, index) in yangTaiShanItems"
+    :key="index"
+    class="grid-item"
+  >
+    <img :src="item.imageUrl" :alt="item.altText" />
+  </div>
+</div>
+
 :::
 
 <script setup>
@@ -83,8 +107,42 @@ const getFengHuangShanItems = () => {
   return arr;
 }
 
+// 梧桐山
+const getWuTongShanItems = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/wutongshan/';
+  const arr = [];
+
+  Array.from({ length: 7 }).forEach((ele, idx) => {
+    const imgName = getImgName('wutongshan', idx);
+    arr.push({
+      imageUrl: `${prefix}${imgName}.jpg`,
+      altText: imgName
+    })
+  });
+
+  return arr;
+}
+
+// 羊台山
+const getYangTaiShanItems = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/yangtaishan/';
+  const arr = [];
+
+  Array.from({ length: 4 }).forEach((ele, idx) => {
+    const imgName = getImgName('yangtaishan', idx);
+    arr.push({
+      imageUrl: `${prefix}${imgName}.jpeg`,
+      altText: imgName
+    })
+  });
+
+  return arr;
+}
+
 const gongYuanItems = ref(getGongYuanItems());
 const fengHuangShanItems = ref(getFengHuangShanItems());
+const wuTongShanItems = ref(getWuTongShanItems());
+const yangTaiShanItems = ref(getYangTaiShanItems());
 
 </script>
 
