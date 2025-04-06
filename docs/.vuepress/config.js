@@ -1,8 +1,6 @@
 import { defaultTheme } from "@vuepress/theme-default";
 import { defineUserConfig } from "vuepress";
 import { photoSwipePlugin } from "@vuepress/plugin-photo-swipe";
-import { nprogressPlugin } from "@vuepress/plugin-nprogress";
-import { mediumZoomPlugin } from "@vuepress/plugin-medium-zoom";
 import { viteBundler } from "@vuepress/bundler-vite";
 
 export default defineUserConfig({
@@ -14,6 +12,6 @@ export default defineUserConfig({
     logo: "https://vuejs.press/images/hero.png",
     navbar: ["/", "/beijing/index", "/shenzhen/index"],
   }),
-  plugins: [photoSwipePlugin(), nprogressPlugin(), mediumZoomPlugin()],
+  plugins: [photoSwipePlugin()],
   bundler: viteBundler(),
 });

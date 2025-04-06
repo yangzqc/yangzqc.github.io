@@ -1,5 +1,6 @@
 ---
 title: 深圳
+sidebar: false
 ---
 
 ::: tabs
