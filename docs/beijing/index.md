@@ -21,7 +21,7 @@ sidebar: false
 
 <div class="grid-container">
   <div
-    v-for="(item, index) in yuanMingYuanItem"
+    v-for="(item, index) in yuanMingYuanItems"
     :key="index"
     class="grid-item"
   >
@@ -46,31 +46,62 @@ sidebar: false
 <script setup>
 import { ref } from 'vue';
 
-const yiHeYuanItems = ref([
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/yiheyuan-01.jpg", altText: "图片1" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/yiheyuan-02.jpg", altText: "图片2" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/yiheyuan-05.jpg", altText: "图片5" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/yiheyuan-04.jpg", altText: "图片4" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/yiheyuan-03.jpg", altText: "图片3" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/yiheyuan-06.jpg", altText: "图片6" },
-]);
+// 获取图片名称
+const getImgName = (imgNamePrefix, idx) => {
+  return `${imgNamePrefix}-${idx < 9 ? 0 : ''}${idx + 1}`;
+}
 
-const yuanMingYuanItem = ref([
-  { imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yuanmingyuan/yuanmingyuan-01.jpg', altText: '图片1' },
-  { imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yuanmingyuan/yuanmingyuan-02.jpg', altText: '图片2' },
-  { imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yuanmingyuan/yuanmingyuan-03.jpg', altText: '图片3' },
-  { imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yuanmingyuan/yuanmingyuan-04.jpg', altText: '图片4' },
-])
+// 颐和园
+const getYiHeYuanItems = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yiheyuan/';
+  const arr = [];
 
-const miaoFengShanItems = ref([
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/miaofengshan/miaofengshan-01.jpg", altText: "图片1" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/miaofengshan/miaofengshan-02.jpg", altText: "图片2" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/miaofengshan/miaofengshan-03.jpg", altText: "图片3" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/miaofengshan/miaofengshan-04.jpg", altText: "图片4" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/miaofengshan/miaofengshan-05.jpg", altText: "图片5" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/miaofengshan/miaofengshan-06.jpg", altText: "图片6" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/miaofengshan/miaofengshan-07.jpg", altText: "图片7" },
-]);
+  Array.from({ length: 6 }).forEach((ele, idx) => {
+    const imgName = getImgName('yiheyuan', idx);
+    arr.push({
+      imageUrl: `${prefix}${imgName}.jpg`,
+      altText: imgName
+    });
+  });
+
+  return arr;
+}
+
+// 圆明园
+const getYuanMingYuanItems = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/yuanmingyuan/';
+  const arr = [];
+
+  Array.from({ length: 4 }).forEach((ele, idx) => {
+    const imgName = getImgName('yuanmingyuan', idx);
+    arr.push({
+      imageUrl: `${prefix}${imgName}.jpg`,
+      altText: imgName
+    });
+  });
+
+  return arr;
+}
+
+// 妙峰山
+const getMiaoFengShanItems = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/miaofengshan/';
+  const arr = [];
+
+  Array.from({ length: 7 }).forEach((ele, idx) => {
+    const imgName = getImgName('miaofengshan', idx);
+    arr.push({
+      imageUrl: `${prefix}${imgName}.jpg`,
+      altText: imgName
+    });
+  });
+
+  return arr;
+}
+
+const yiHeYuanItems = ref(getYiHeYuanItems());
+const yuanMingYuanItems = ref(getYuanMingYuanItems());
+const miaoFengShanItems = ref(getMiaoFengShanItems());
 
 </script>
 
