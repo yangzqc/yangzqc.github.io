@@ -34,26 +34,46 @@ sidebar: false
 <script setup>
 import { ref } from 'vue';
 
-const gongYuanItems = ref([
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gongyuan-01.webp", altText: "图片1" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gongyuan-02.png", altText: "图片2" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gongyuan-03.jpg", altText: "图片3" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gognyuan-04.jpg", altText: "图片4" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gongyuan-05.jpg", altText: "图片5" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gongyuan-06.jpg", altText: "图片6" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gongyuan-07.jpg", altText: "图片7" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gongyuan-08.jpg", altText: "图片8" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gongyuan-09.jpg", altText: "图片9" },
-  { imageUrl: "https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gongyuan-10.jpg", altText: "图片10" },
-]);
+// 获取图片名称
+const getImgName = (imgNamePrefix, idx) => {
+  return `${imgNamePrefix}-${idx < 9 ? 0 : ''}${idx + 1}`;
+}
+
+// 获取公园图片后缀
+const getGongYuanImgSuffix = (idx) => {
+  if (idx === 0) {
+    return '.webp';
+  }
+  if (idx === 1) {
+    return '.png';
+  }
+  return '.jpg';
+}
+
+// 公园
+const getGongYuanItems = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/';
+  const arr = [];
+
+  Array.from({ length: 10 }).forEach((ele, idx) => {
+    const imgName = getImgName('gongyuan', idx);
+    const imgNameSuffix = idx > 0 ? '.jpg' : '.webp';
+    arr.push({
+      imageUrl: `${prefix}${imgName}${getGongYuanImgSuffix(idx)}`,
+      altText: imgName
+    })
+  });
+
+  return arr;
+}
 
 // 凤凰山
-const getFengHuangShanItem = () => {
+const getFengHuangShanItems = () => {
   const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/fenghuangshan/';
   const arr = [];
 
   Array.from({ length: 10 }).forEach((ele, idx) => {
-    const imgName = `fenghuangshan-${idx < 9 ? 0 : ''}${idx + 1}`;
+    const imgName = getImgName('fenghuangshan', idx);
     arr.push({
       imageUrl: `${prefix}${imgName}.jpg`,
       altText: imgName
@@ -63,7 +83,8 @@ const getFengHuangShanItem = () => {
   return arr;
 }
 
-const fengHuangShanItems = ref(getFengHuangShanItem());
+const gongYuanItems = ref(getGongYuanItems());
+const fengHuangShanItems = ref(getFengHuangShanItems());
 
 </script>
 
