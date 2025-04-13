@@ -1,6 +1,14 @@
 ---
 title: 深圳
 sidebar: false
+lastUpdated: false
+contributors: false
+prev:
+  text: 首页
+  link: /
+next:
+  text: 西安
+  link: /xian/
 ---
 
 ::: tabs

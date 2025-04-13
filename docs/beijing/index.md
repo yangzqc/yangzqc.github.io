@@ -1,6 +1,11 @@
 ---
 title: 北京
 sidebar: false
+lastUpdated: false
+contributors: false
+prev:
+  text: 西安
+  link: /xian/
 ---
 
 ::: tabs
