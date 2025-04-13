@@ -2,26 +2,91 @@
 home: true
 title: 首页
 heroImage: https://vuejs.press/images/hero.png
-actions:
-  - text: Get Started
-    link: /beijing/index.html
-    type: primary
-
-features:
-  - title: Simplicity First
-    details: Minimal setup with markdown-centered project structure helps you focus on writing.
-  - title: Vue-Powered
-    details: Enjoy the dev experience of Vue, use Vue components in markdown, and develop custom themes with Vue.
-  - title: Performant
-    details: VuePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
-  - title: Themes
-    details: Providing a default theme out of the box. You can also choose a community theme or create your own one.
-  - title: Plugins
-    details: Flexible plugin API, allowing plugins to provide lots of plug-and-play features for your site.
-  - title: Bundlers
-    details: Default bundler is Vite, while Webpack is also supported. Choose the one you like!
-
-footer: MIT Licensed | Copyright © 2018-present VuePress Community
+heroText: yangzqc
+tagline: 123
 ---
 
-This is the content of home page. Check [Home Page Docs][default-theme-home] for more details.
+<div class="home-container">
+  <div
+    v-for="(item, index) in cityItems"
+    :key="index"
+    class="home-item"
+  >
+    <div class="city-desc">
+      <span class="city-name">{{item.name}}</span>
+      <span class="city-date">{{item.date}}</span>
+    </div>
+    <div class="city-img" :style="getItemBackgroundImg(item.imageUrl)" @click="goToPage(item.nav)"></div>
+  </div>
+</div>
+
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const getItemBackgroundImg = (imageUrl) => {
+  return {
+    backgroundImage: `url(${imageUrl})`, // 使用模板字符串
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  }
+}
+
+const goToPage = (nav) => {
+  router.push(nav);
+}
+
+const cityItems = ref([
+  {
+    name: '深圳',
+    imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gongyuan-06.jpg',
+    date: '2018.12.13',
+    nav: '/shenzhen/'
+  },
+  {
+    name: '北京',
+    imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/miaofengshan/miaofengshan-03.jpg',
+    date: '2024.12.24',
+    nav: '/beijing/'
+  }
+]);
+
+</script>
+
+<style scoped>
+.home-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: .75rem;
+}
+
+.home-item {
+  padding: .5rem;
+  border-radius: .5rem;
+  overflow: hidden;
+  background-color: var(--tab-c-bg-nav);
+  cursor: pointer;
+}
+
+.home-item .city-desc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--tab-c-nav);
+  margin-bottom: .2rem;
+  font-size: .875em;
+}
+
+.home-item .city-desc .city-date {
+  font-weight: 600;
+}
+
+.home-item .city-img {
+  width: 100%;
+  height: 12rem;
+}
+</style>
