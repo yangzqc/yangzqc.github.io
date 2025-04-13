@@ -1,10 +1,17 @@
 ---
 home: true
 title: 首页
-heroImage: https://vuejs.press/images/hero.png
-heroText: yangzqc
-tagline: 123
+heroText:
+tagline:
 ---
+
+<div class="home-head">
+  <img
+    src="https://memories.obs.cn-south-1.myhuaweicloud.com/xian/weiyanggong/weiyanggong-head.jpg"
+  />
+</div>
+
+<div class="home-tip">平常心</div>
 
 <div class="home-container">
   <div
@@ -47,6 +54,12 @@ const cityItems = ref([
     nav: '/shenzhen/'
   },
   {
+    name: '西安',
+    imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com:443/xian/weiyanggong/weiyanggong-01.jpg',
+    date: '2023.09.25',
+    nav: '/xian/'
+  },
+  {
     name: '北京',
     imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/miaofengshan/miaofengshan-03.jpg',
     date: '2024.12.24',
@@ -57,6 +70,26 @@ const cityItems = ref([
 </script>
 
 <style scoped>
+.home-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 8rem auto 4rem;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.home-tip {
+  margin: 1.8rem auto;
+  text-align: center;
+  color: var(--vp-c-text-mute);
+  font-size: 1.6rem;
+  line-height: 1.3;
+}
+
 .home-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -87,6 +120,6 @@ const cityItems = ref([
 
 .home-item .city-img {
   width: 100%;
-  height: 12rem;
+  height: 13rem;
 }
 </style>
