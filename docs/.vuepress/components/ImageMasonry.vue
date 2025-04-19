@@ -1,5 +1,20 @@
 <template>
   <div class="masonry-container">
+    <!-- 加载状态提示 -->
+    <div v-if="isLoading" class="loading-container">
+      <div class="loading-spinner">正在加载中，请稍等...</div>
+    </div>
+
+    <!-- 图片加载失败提示 -->
+    <div v-if="errorImages.length" class="error-overlay">
+      <div class="error-title">以下图片加载失败：</div>
+      <ul class="error-list">
+        <li v-for="(errorImg, index) in errorImages" :key="index">
+          {{ errorImg }}
+        </li>
+      </ul>
+    </div>
+
     <div class="masonry-grid">
       <div
         v-for="(column, columnIndex) in columns"
@@ -13,9 +28,10 @@
           class="masonry-item"
         >
           <img
-            :src="item.src"
-            :alt="`图片 ${itemIndex + 1}`"
+            :src="item.imageSrc"
+            :alt="item.imageAlt"
             @load="handleImageLoad"
+            @error="handleImageError"
           />
         </div>
       </div>
@@ -24,8 +40,21 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, onUnmounted } from "vue";
+import { ref, defineProps, onMounted, computed, onUnmounted } from "vue";
 
+/**
+ *
+ * images Array<{ imageSrc: string, imageAlt: string }>
+ *
+ */
+const props = defineProps({
+  images: {
+    type: Array,
+    default: () => [], // 默认为空数组
+  },
+});
+
+const maxColumns = 4;
 const gap = 15;
 const baseColumnWidth = 260;
 
@@ -46,19 +75,11 @@ function debounce(func, wait) {
 const columnCount = ref(4);
 const columnWidth = ref(baseColumnWidth);
 const containerWidth = ref(window.innerWidth);
+const isLoading = ref(true);
+const errorImages = ref([]);
+const loadedImagesCount = ref(0);
 
-const images = ref([
-  "https://picsum.photos/id/1/800/600",
-  "https://picsum.photos/id/2/800/1000",
-  "https://picsum.photos/id/3/800/500",
-  "https://picsum.photos/id/4/800/700",
-  "https://picsum.photos/id/5/800/900",
-  "https://picsum.photos/id/6/800/400",
-  "https://picsum.photos/id/7/800/600",
-  "https://picsum.photos/id/8/800/1100",
-  "https://picsum.photos/id/9/800/450",
-  "https://picsum.photos/id/10/800/800",
-]);
+const images = ref(props.images);
 
 // 计算列数和列宽的函数
 const calculateColumns = () => {
@@ -76,7 +97,7 @@ const calculateColumns = () => {
   }
 
   // 计算列宽，使用100%的屏幕宽度
-  const availableWidth = width; // 使用100%的屏幕宽度
+  const availableWidth = width;
   columnWidth.value =
     (availableWidth - (columnCount.value - 1) * gap) / columnCount.value;
 };
@@ -85,10 +106,12 @@ const calculateColumns = () => {
 const columns = computed(() => {
   const result = Array.from({ length: columnCount.value }, () => []);
 
-  images.value.forEach((src, index) => {
+  images.value.forEach((imageItem, index) => {
     const columnIndex = index % columnCount.value;
-    result[columnIndex].push({ src });
+    result[columnIndex].push(imageItem);
   });
+
+  console.log("result--", result);
 
   return result;
 });
@@ -97,12 +120,31 @@ const handleImageLoad = (event) => {
   const img = event.target;
   img.style.width = "100%";
   img.style.height = "auto";
+
+  loadedImagesCount.value++;
+
+  // 所有图片加载完成
+  if (loadedImagesCount.value === images.value.length) {
+    isLoading.value = false;
+  }
+};
+
+const handleImageError = (event) => {
+  const img = event.target;
+  errorImages.value.push(img.src);
+
+  loadedImagesCount.value++;
+
+  // 所有图片处理完成
+  if (loadedImagesCount.value === images.value.length) {
+    isLoading.value = false;
+  }
 };
 
 // 使用防抖处理窗口大小改变事件
 const handleResize = debounce(() => {
   calculateColumns();
-}, 200); // 200毫秒防抖时间
+}, 200);
 
 onMounted(() => {
   // 初始计算列数
@@ -121,7 +163,36 @@ onUnmounted(() => {
 <style scoped>
 .masonry-container {
   width: 100%;
-  margin: 0 auto;
+}
+
+.loading-container {
+  display: flex;
+  width: 100%;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.loading-spinner {
+  font-size: 18px;
+  color: #333;
+}
+
+.error-overlay {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.error-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.error-list {
+  list-style-type: disc;
+  padding-left: 20px;
 }
 
 .masonry-grid {
@@ -140,6 +211,7 @@ onUnmounted(() => {
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .masonry-item:hover {
