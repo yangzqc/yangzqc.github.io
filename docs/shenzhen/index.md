@@ -15,56 +15,25 @@ next:
 
 @tab 公园
 
-<div class="grid-container">
-  <div
-    v-for="(item, index) in gongYuanItems"
-    :key="index"
-    class="grid-item"
-  >
-    <img :src="item.imageUrl" :alt="item.altText" />
-  </div>
-</div>
+<ImageMasonry :images="gongYuanImages" />
 
 @tab 凤凰山
 
-<div class="grid-container">
-  <div
-    v-for="(item, index) in fengHuangShanItems"
-    :key="index"
-    class="grid-item"
-  >
-    <img :src="item.imageUrl" :alt="item.altText" />
-  </div>
-</div>
+<ImageMasonry :images="fengHuangShanImages" />
 
 @tab 梧桐山
 
-<div class="grid-container">
-  <div
-    v-for="(item, index) in wuTongShanItems"
-    :key="index"
-    class="grid-item"
-  >
-    <img :src="item.imageUrl" :alt="item.altText" />
-  </div>
-</div>
+<ImageMasonry :images="wuTongShanImages" />
 
 @tab 羊台山
 
-<div class="grid-container">
-  <div
-    v-for="(item, index) in yangTaiShanItems"
-    :key="index"
-    class="grid-item"
-  >
-    <img :src="item.imageUrl" :alt="item.altText" />
-  </div>
-</div>
+<ImageMasonry :images="yangTaiShanImages" />
 
 :::
 
 <script setup>
 import { ref } from 'vue';
+import ImageMasonry from '/.vuepress/components/ImageMasonry.vue';
 
 // 获取图片名称
 const getImgName = (imgNamePrefix, idx) => {
@@ -83,16 +52,16 @@ const getGongYuanImgSuffix = (idx) => {
 }
 
 // 公园
-const getGongYuanItems = () => {
+const getGongYuanImages = () => {
   const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/';
   const arr = [];
 
-  Array.from({ length: 10 }).forEach((ele, idx) => {
+  Array.from({ length: 11 }).forEach((ele, idx) => {
     const imgName = getImgName('gongyuan', idx);
     const imgNameSuffix = idx > 0 ? '.jpg' : '.webp';
     arr.push({
-      imageUrl: `${prefix}${imgName}${getGongYuanImgSuffix(idx)}`,
-      altText: imgName
+      imageSrc: `${prefix}${imgName}${getGongYuanImgSuffix(idx)}`,
+      imageAlt: imgName
     })
   });
 
@@ -100,15 +69,15 @@ const getGongYuanItems = () => {
 }
 
 // 凤凰山
-const getFengHuangShanItems = () => {
+const getFengHuangShanImages = () => {
   const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/fenghuangshan/';
   const arr = [];
 
   Array.from({ length: 10 }).forEach((ele, idx) => {
     const imgName = getImgName('fenghuangshan', idx);
     arr.push({
-      imageUrl: `${prefix}${imgName}.jpg`,
-      altText: imgName
+      imageSrc: `${prefix}${imgName}.jpg`,
+      imageAlt: imgName
     })
   });
 
@@ -116,15 +85,15 @@ const getFengHuangShanItems = () => {
 }
 
 // 梧桐山
-const getWuTongShanItems = () => {
+const getWuTongShanImages = () => {
   const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/wutongshan/';
   const arr = [];
 
   Array.from({ length: 7 }).forEach((ele, idx) => {
     const imgName = getImgName('wutongshan', idx);
     arr.push({
-      imageUrl: `${prefix}${imgName}.jpg`,
-      altText: imgName
+      imageSrc: `${prefix}${imgName}.jpg`,
+      imageAlt: imgName
     })
   });
 
@@ -132,52 +101,27 @@ const getWuTongShanItems = () => {
 }
 
 // 羊台山
-const getYangTaiShanItems = () => {
+const getYangTaiShanImages = () => {
   const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/yangtaishan/';
   const arr = [];
 
   Array.from({ length: 4 }).forEach((ele, idx) => {
     const imgName = getImgName('yangtaishan', idx);
     arr.push({
-      imageUrl: `${prefix}${imgName}.jpeg`,
-      altText: imgName
+      imageSrc: `${prefix}${imgName}.jpeg`,
+      imageAlt: imgName
     })
   });
 
   return arr;
 }
 
-const gongYuanItems = ref(getGongYuanItems());
-const fengHuangShanItems = ref(getFengHuangShanItems());
-const wuTongShanItems = ref(getWuTongShanItems());
-const yangTaiShanItems = ref(getYangTaiShanItems());
+const gongYuanImages = ref(getGongYuanImages());
+const fengHuangShanImages = ref(getFengHuangShanImages());
+const wuTongShanImages = ref(getWuTongShanImages());
+const yangTaiShanImages = ref(getYangTaiShanImages());
 
 </script>
 
 <style scoped>
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: .75rem;
-  /* padding: 20px; */
-}
-
-.grid-item {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.grid-item img {
-  width: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.caption {
-  padding: 10px;
-  text-align: center;
-  font-family: Arial, sans-serif;
-}
 </style>

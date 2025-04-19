@@ -5,11 +5,7 @@ heroText:
 tagline:
 ---
 
-<div class="home-head">
-  <img
-    src="https://memories.obs.cn-south-1.myhuaweicloud.com/xian/weiyanggong/weiyanggong-head.jpg"
-  />
-</div>
+<div class="home-head" :style="getImageBackgroundImg(headBgUrl)"></div>
 
 <div class="home-tip">平常心</div>
 
@@ -23,7 +19,7 @@ tagline:
       <span class="city-name">{{item.name}}</span>
       <span class="city-date">{{item.date}}</span>
     </div>
-    <div class="city-img" :style="getItemBackgroundImg(item.imageUrl)" @click="goToPage(item.nav)"></div>
+    <div class="city-img" :style="getImageBackgroundImg(item.imageUrl)" @click="goToPage(item.nav)"></div>
   </div>
 </div>
 
@@ -33,7 +29,7 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-const getItemBackgroundImg = (imageUrl) => {
+const getImageBackgroundImg = (imageUrl) => {
   return {
     backgroundImage: `url(${imageUrl})`, // 使用模板字符串
     backgroundSize: 'cover',
@@ -45,6 +41,8 @@ const getItemBackgroundImg = (imageUrl) => {
 const goToPage = (nav) => {
   router.push(nav);
 }
+
+const headBgUrl = 'https://memories.obs.cn-south-1.myhuaweicloud.com/tianshui/xiwancun/xiwancun-01.jpg';
 
 const cityItems = ref([
   {
@@ -86,7 +84,7 @@ const cityItems = ref([
   margin: 1.8rem auto;
   text-align: center;
   color: var(--vp-c-text-mute);
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   line-height: 1.3;
 }
 
