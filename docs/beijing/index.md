@@ -22,6 +22,8 @@ prev:
   </div>
 </div>
 
+<MyComponent/>
+
 @tab 圆明园
 
 <div class="grid-container">
@@ -50,6 +52,7 @@ prev:
 
 <script setup>
 import { ref } from 'vue';
+import MyComponent from '/.vuepress/components/MyComponent.vue';
 
 // 获取图片名称
 const getImgName = (imgNamePrefix, idx) => {
