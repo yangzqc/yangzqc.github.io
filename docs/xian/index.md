@@ -15,20 +15,13 @@ next:
 
 @tab 未央宫
 
-<div class="grid-container">
-  <div
-    v-for="(item, index) in weiYangGongItems"
-    :key="index"
-    class="grid-item"
-  >
-    <img :src="item.imageUrl" :alt="item.altText" />
-  </div>
-</div>
+<ImageMasonry :images="weiYangGongImages" />
 
 :::
 
 <script setup>
 import { ref } from 'vue';
+import ImageMasonry from '/.vuepress/components/ImageMasonry.vue';
 
 // 获取图片名称
 const getImgName = (imgNamePrefix, idx) => {
@@ -36,49 +29,24 @@ const getImgName = (imgNamePrefix, idx) => {
 }
 
 // 未央宫
-const getWeiYangGongItems = () => {
+const getWeiYangGongImages = () => {
   const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/xian/weiyanggong/';
   const arr = [];
 
   Array.from({ length: 5 }).forEach((ele, idx) => {
     const imgName = getImgName('weiyanggong', idx);
     arr.push({
-      imageUrl: `${prefix}${imgName}.jpg`,
-      altText: imgName
+      imageSrc: `${prefix}${imgName}.jpg`,
+      imageAlt: imgName
     })
   });
 
   return arr;
 }
 
-const weiYangGongItems = ref(getWeiYangGongItems());
+const weiYangGongImages = ref(getWeiYangGongImages());
 
 </script>
 
 <style scoped>
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: .75rem;
-  /* padding: 20px; */
-}
-
-.grid-item {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.grid-item img {
-  width: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.caption {
-  padding: 10px;
-  text-align: center;
-  font-family: Arial, sans-serif;
-}
 </style>

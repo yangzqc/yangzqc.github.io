@@ -212,7 +212,6 @@ onUnmounted(() => {
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.3s ease;
-  cursor: pointer;
 }
 
 .masonry-item:hover {
