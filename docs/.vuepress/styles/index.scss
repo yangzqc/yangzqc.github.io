@@ -1,6 +1,26 @@
 :root {
+  // 默认桌面端宽度
   --content-width: 75%;
-  // --homepage-width: 60%;
+
+  @media (max-width: 1200px) {
+    // 大屏幕笔记本
+    --content-width: 85%;
+  }
+
+  @media (max-width: 992px) {
+    // 平板电脑
+    --content-width: 90%;
+  }
+
+  @media (max-width: 768px) {
+    // 小平板和大型手机
+    --content-width: 95%;
+  }
+
+  @media (max-width: 576px) {
+    // 小型手机
+    --content-width: 100%;
+  }
 }
 
 .vp-page-nav {
