@@ -1,12 +1,12 @@
 <template>
   <div class="masonry-container">
     <!-- 加载状态提示 -->
-    <div v-if="isLoading" class="loading-container">
+    <div v-show="isLoading" class="loading-container">
       <div class="loading-spinner">正在加载中，请稍等...</div>
     </div>
 
     <!-- 图片加载失败提示 -->
-    <div v-if="errorImages.length" class="error-overlay">
+    <div v-show="errorImages.length" class="error-overlay">
       <div class="error-title">以下图片加载失败：</div>
       <ul class="error-list">
         <li v-for="(errorImg, index) in errorImages" :key="index">
@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, onMounted, computed, onUnmounted } from "vue";
+import { ref, onMounted, computed, onUnmounted } from "vue";
 
 /**
  *
@@ -111,8 +111,6 @@ const columns = computed(() => {
     result[columnIndex].push(imageItem);
   });
 
-  console.log("result--", result);
-
   return result;
 });
 
@@ -131,7 +129,10 @@ const handleImageLoad = (event) => {
 
 const handleImageError = (event) => {
   const img = event.target;
-  errorImages.value.push(img.src);
+
+  if (!errorImages.value.includes(img.alt)) {
+    errorImages.value.push(img.alt);
+  }
 
   loadedImagesCount.value++;
 
@@ -168,13 +169,13 @@ onUnmounted(() => {
 .loading-container {
   display: flex;
   width: 100%;
-  height: 200px;
-  background: rgba(255, 255, 255, 0.8);
+  height: 40px;
+  background: var(--tab-c-bg);
 }
 
 .loading-spinner {
-  font-size: 18px;
-  color: #333;
+  font-size: 16px;
+  color: var(--vp-c-text-mute);
 }
 
 .error-overlay {
