@@ -1,21 +1,21 @@
 ---
-title: 西安
+title: 清远
 sidebar: false
 lastUpdated: false
 contributors: false
 prev:
-  text: 清远
-  link: /qingyuan/
+  text: 深圳
+  link: /shenzhen/
 next:
-  text: 北京
-  link: /beijing/
+  text: 西安
+  link: /xian/
 ---
 
 ::: tabs
 
 @tab 未央宫
 
-<ImageMasonry :images="weiYangGongImages" />
+<ImageMasonry :images="zhenYangXiaImages" />
 
 :::
 
@@ -28,13 +28,13 @@ const getImgName = (imgNamePrefix, idx) => {
   return `${imgNamePrefix}-${idx < 9 ? 0 : ''}${idx + 1}`;
 }
 
-// 未央宫
-const getWeiYangGongImages = () => {
-  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/xian/weiyanggong/';
+// 浈阳峡
+const getZhenYangXiaImages = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/qingyuan/zhenyangxia/';
   const arr = [];
 
-  Array.from({ length: 5 }).forEach((ele, idx) => {
-    const imgName = getImgName('weiyanggong', idx);
+  Array.from({ length: 2 }).forEach((ele, idx) => {
+    const imgName = getImgName('zhenyangxia', idx);
     arr.push({
       imageSrc: `${prefix}${imgName}.jpg`,
       imageAlt: imgName
@@ -44,7 +44,7 @@ const getWeiYangGongImages = () => {
   return arr;
 }
 
-const weiYangGongImages = ref(getWeiYangGongImages());
+const zhenYangXiaImages = ref(getZhenYangXiaImages());
 
 </script>
 

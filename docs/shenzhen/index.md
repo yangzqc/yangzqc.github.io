@@ -7,8 +7,8 @@ prev:
   text: 首页
   link: /
 next:
-  text: 西安
-  link: /xian/
+  text: 清远
+  link: /qingyuan/
 ---
 
 ::: tabs
