@@ -40,12 +40,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, onUnmounted } from "vue";
+import { ref, onMounted, computed, onUnmounted, onBeforeMount } from "vue";
+import { isClient } from "@vueuse/core";
 
 /**
- *
  * images Array<{ imageSrc: string, imageAlt: string }>
- *
  */
 const props = defineProps({
   images: {
@@ -74,7 +73,7 @@ function debounce(func, wait) {
 // 响应式状态
 const columnCount = ref(4);
 const columnWidth = ref(baseColumnWidth);
-const containerWidth = ref(window.innerWidth);
+const containerWidth = ref(isClient ? window.innerWidth : 1200);
 const isLoading = ref(true);
 const errorImages = ref([]);
 const loadedImagesCount = ref(0);
@@ -83,6 +82,8 @@ const images = ref(props.images);
 
 // 计算列数和列宽的函数
 const calculateColumns = () => {
+  if (!isClient) return;
+
   const width = window.innerWidth;
   containerWidth.value = width;
 
@@ -130,6 +131,7 @@ const handleImageLoad = (event) => {
 const handleImageError = (event) => {
   const img = event.target;
 
+  // 如果错误图片列表中没有包含当前图片的alt属性
   if (!errorImages.value.includes(img.alt)) {
     errorImages.value.push(img.alt);
   }
@@ -137,6 +139,7 @@ const handleImageError = (event) => {
   loadedImagesCount.value++;
 
   // 所有图片处理完成
+  // 如果已加载图片的数量等于总图片数量
   if (loadedImagesCount.value === images.value.length) {
     isLoading.value = false;
   }
@@ -147,17 +150,23 @@ const handleResize = debounce(() => {
   calculateColumns();
 }, 200);
 
-onMounted(() => {
+onBeforeMount(() => {
   // 初始计算列数
   calculateColumns();
+});
 
-  // 添加窗口大小变化监听
-  window.addEventListener("resize", handleResize);
+onMounted(() => {
+  if (isClient) {
+    // 添加窗口大小变化监听
+    window.addEventListener("resize", handleResize);
+  }
 });
 
 // 组件卸载时移除事件监听
 onUnmounted(() => {
-  window.removeEventListener("resize", handleResize);
+  if (isClient) {
+    window.removeEventListener("resize", handleResize);
+  }
 });
 </script>
 

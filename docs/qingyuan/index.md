@@ -13,7 +13,7 @@ next:
 
 ::: tabs
 
-@tab 未央宫
+@tab 浈阳峡风景区
 
 <ImageMasonry :images="zhenYangXiaImages" />
 
