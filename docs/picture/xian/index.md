@@ -5,10 +5,10 @@ lastUpdated: false
 contributors: false
 prev:
   text: 清远
-  link: /qingyuan/
+  link: /picture/qingyuan/
 next:
   text: 北京
-  link: /beijing/
+  link: /picture/beijing/
 ---
 
 ::: tabs
