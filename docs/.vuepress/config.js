@@ -10,7 +10,7 @@ export default defineUserConfig({
   base: "/",
   theme: defaultTheme({
     // logo: "https://vuejs.press/images/hero.png",
-    navbar: ["/"],
+    navbar: ["/", "/video/tianshui/"],
   }),
   plugins: [photoSwipePlugin()],
   bundler: viteBundler(),
