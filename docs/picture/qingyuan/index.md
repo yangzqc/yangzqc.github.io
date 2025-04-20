@@ -5,10 +5,10 @@ lastUpdated: false
 contributors: false
 prev:
   text: 深圳
-  link: /shenzhen/
+  link: /picture/shenzhen/
 next:
   text: 西安
-  link: /xian/
+  link: /picture/xian/
 ---
 
 ::: tabs

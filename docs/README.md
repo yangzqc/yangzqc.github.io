@@ -49,25 +49,25 @@ const cityItems = ref([
     name: '深圳',
     imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gongyuan-06.jpg',
     date: '2018-12-13',
-    nav: '/shenzhen/'
+    nav: '/picture/shenzhen/'
   },
   {
     name: '清远',
     imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/qingyuan/zhenyangxia/zhenyangxia-01.jpg',
     date: '2021-09-20',
-    nav: '/qingyuan/'
+    nav: '/picture/qingyuan/'
   },
   {
     name: '西安',
     imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com:443/xian/weiyanggong/weiyanggong-01.jpg',
     date: '2023-09-25',
-    nav: '/xian/'
+    nav: '/picture/xian/'
   },
   {
     name: '北京',
     imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/miaofengshan/miaofengshan-03.jpg',
     date: '2024-12-24',
-    nav: '/beijing/'
+    nav: '/picture/beijing/'
   }
 ]);
 

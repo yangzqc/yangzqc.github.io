@@ -8,7 +8,7 @@ prev:
   link: /
 next:
   text: 清远
-  link: /qingyuan/
+  link: /picture/qingyuan/
 ---
 
 ::: tabs
