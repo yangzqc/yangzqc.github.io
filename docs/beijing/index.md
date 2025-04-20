@@ -20,7 +20,11 @@ prev:
 
 @tab 妙峰山
 
-<ImageMasonry :images="miaofengshanImages" />
+<ImageMasonry :images="miaoFengShanImages" />
+
+@tab 八达岭长城
+
+<ImageMasonry :images="baDaLingChangChenImages" />
 
 :::
 
@@ -81,9 +85,26 @@ const getMiaoFengShanImages = () => {
   return arr;
 }
 
+// 八达岭长城
+const getBaDaLingChangChenImages = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/badalingchangcheng/';
+  const arr = [];
+
+  Array.from({ length: 15 }).forEach((ele, idx) => {
+    const imgName = getImgName('badalingchangcheng', idx);
+    arr.push({
+      imageSrc: `${prefix}${imgName}.jpg`,
+      imageAlt: imgName
+    });
+  });
+
+  return arr;
+}
+
 const yiHeYuanImages = ref(getYiHeYuanImages());
 const yuanMingYuanImages = ref(getYuanMingYuanImages());
-const miaofengshanImages = ref(getMiaoFengShanImages());
+const miaoFengShanImages = ref(getMiaoFengShanImages());
+const baDaLingChangChenImages = ref(getBaDaLingChangChenImages());
 
 </script>
 
