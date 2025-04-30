@@ -146,20 +146,20 @@ const handleImageError = (event) => {
 };
 
 // 使用防抖处理窗口大小改变事件
-const handleResize = () => {
+// const handleResize = () => {
+//   calculateColumns();
+// };
+const handleResize = debounce(() => {
   calculateColumns();
-};
-// const handleResize = debounce(() => {
-//   calculateColumns();
-// }, 200);
+}, 200);
 
-// onBeforeMount(() => {
-//   // 初始计算列数
-//   calculateColumns();
-// });
+onBeforeMount(() => {
+  // 初始计算列数
+  calculateColumns();
+});
 
 onMounted(() => {
-  calculateColumns();
+  // calculateColumns();
 
   if (isClient) {
     // 添加窗口大小变化监听
