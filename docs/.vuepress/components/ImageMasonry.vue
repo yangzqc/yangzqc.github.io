@@ -164,6 +164,22 @@ onMounted(() => {
   if (isClient) {
     // 添加窗口大小变化监听
     window.addEventListener("resize", handleResize);
+
+    // 检查图片是否已经加载完成（处理缓存情况）
+    const images = document.querySelectorAll(".masonry-item img");
+    let loadedCount = 0;
+
+    images.forEach((img) => {
+      if (img.complete) {
+        loadedCount++;
+        img.style.width = "100%";
+        img.style.height = "auto";
+      }
+    });
+
+    if (loadedCount === images.length && images.length > 0) {
+      isLoading.value = false;
+    }
   }
 });
 
