@@ -153,13 +153,8 @@ const handleResize = debounce(() => {
   calculateColumns();
 }, 200);
 
-onBeforeMount(() => {
-  // 初始计算列数
-  calculateColumns();
-});
-
 onMounted(() => {
-  // calculateColumns();
+  calculateColumns();
 
   if (isClient) {
     // 添加窗口大小变化监听
