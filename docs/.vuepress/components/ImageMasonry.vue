@@ -146,16 +146,21 @@ const handleImageError = (event) => {
 };
 
 // 使用防抖处理窗口大小改变事件
-const handleResize = debounce(() => {
+const handleResize = () => {
   calculateColumns();
-}, 200);
+};
+// const handleResize = debounce(() => {
+//   calculateColumns();
+// }, 200);
 
-onBeforeMount(() => {
-  // 初始计算列数
-  calculateColumns();
-});
+// onBeforeMount(() => {
+//   // 初始计算列数
+//   calculateColumns();
+// });
 
 onMounted(() => {
+  calculateColumns();
+
   if (isClient) {
     // 添加窗口大小变化监听
     window.addEventListener("resize", handleResize);
