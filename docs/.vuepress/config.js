@@ -2,7 +2,6 @@ import { defaultTheme } from "@vuepress/theme-default";
 import { defineUserConfig } from "vuepress";
 import { photoSwipePlugin } from "@vuepress/plugin-photo-swipe";
 import { viteBundler } from "@vuepress/bundler-vite";
-import { mediumZoomPlugin } from "@vuepress/plugin-medium-zoom";
 
 export default defineUserConfig({
   lang: "en-US",
