@@ -2,6 +2,7 @@
   <div class="masonry-container">
     <!-- 加载状态提示 -->
     <div v-show="isLoading" class="loading-container">
+      <div class="loading-mask"></div>
       <div class="loading-spinner">正在加载中，请稍等...</div>
     </div>
 
@@ -189,19 +190,56 @@ onUnmounted(() => {
 
 <style scoped>
 .masonry-container {
+  position: relative;
   width: 100%;
 }
 
 .loading-container {
-  display: flex;
-  width: 100%;
-  height: 40px;
-  background: var(--tab-c-bg);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.loading-mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--tab-c-bg);
+  opacity: 0.6;
 }
 
 .loading-spinner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 16px;
-  color: var(--vp-c-text-mute);
+  --hint-c-accent: var(--tip-c-accent);
+  --hint-c-title: var(--tip-c-text);
+  --hint-c-soft: var(--tip-c-soft);
+  color: var(--hint-c-title);
+  background-color: var(--hint-c-soft);
+  line-height: 2;
+}
+
+.loading-spinner::before {
+  background-color: currentColor;
+  mask-image: url("/images/favicon.svg");
+  mask-size: 1em;
+  mask-repeat: no-repeat;
+  content: " ";
+  inset-inline-start: 0;
+  top: calc(50% - 0.6125em);
+  width: 1.25em;
+  height: 1.25em;
+  font-size: 1.25em;
 }
 
 .error-overlay {
