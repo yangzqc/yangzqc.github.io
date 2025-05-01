@@ -10,6 +10,10 @@ prev:
 
 ::: tabs
 
+@tab 长安街
+
+<ImageMasonry :images="changAnJieImages" />
+
 @tab 颐和园
 
 <ImageMasonry :images="yiHeYuanImages" />
@@ -35,6 +39,22 @@ import ImageMasonry from '/.vuepress/components/ImageMasonry.vue';
 // 获取图片名称
 const getImgName = (imgNamePrefix, idx) => {
   return `${imgNamePrefix}-${idx < 9 ? 0 : ''}${idx + 1}`;
+}
+
+// 长安街
+const getChangAnJieImages = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/changanjie/';
+  const arr = [];
+
+  Array.from({ length: 5 }).forEach((ele, idx) => {
+    const imgName = getImgName('changanjie', idx);
+    arr.push({
+      imageSrc: `${prefix}${imgName}.jpg`,
+      imageAlt: imgName
+    });
+  });
+
+  return arr;
 }
 
 // 颐和园
@@ -101,6 +121,7 @@ const getBaDaLingChangChenImages = () => {
   return arr;
 }
 
+const changAnJieImages = ref(getChangAnJieImages());
 const yiHeYuanImages = ref(getYiHeYuanImages());
 const yuanMingYuanImages = ref(getYuanMingYuanImages());
 const miaoFengShanImages = ref(getMiaoFengShanImages());
