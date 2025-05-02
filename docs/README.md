@@ -64,6 +64,12 @@ const cityItems = ref([
     nav: '/picture/xian/'
   },
   {
+    name: '广州',
+    imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/guangzhou/baiyunshan/baiyunshan-02.jpg',
+    date: '2024-07-31',
+    nav: '/picture/guangzhou/'
+  },
+  {
     name: '北京',
     imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/miaofengshan/miaofengshan-03.jpg',
     date: '2024-12-24',

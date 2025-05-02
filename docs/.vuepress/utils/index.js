@@ -20,6 +20,10 @@ export const getThemeNavbar = () => {
           link: "/picture/xian/",
         },
         {
+          text: "广州",
+          link: "/picture/guangzhou/",
+        },
+        {
           text: "北京",
           link: "/picture/beijing/",
         },

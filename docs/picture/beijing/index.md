@@ -4,8 +4,8 @@ sidebar: false
 lastUpdated: false
 contributors: false
 prev:
-  text: 西安
-  link: /picture/xian/
+  text: 广州
+  link: /picture/guangzhou/
 ---
 
 ::: tabs

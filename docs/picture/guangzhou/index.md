@@ -1,21 +1,21 @@
 ---
-title: 西安
+title: 广州
 sidebar: false
 lastUpdated: false
 contributors: false
 prev:
-  text: 清远
-  link: /picture/qingyuan/
+  text: 西安
+  link: /picture/xian/
 next:
-  text: 广州
-  link: /picture/guangzhou/
+  text: 北京
+  link: /picture/beijing/
 ---
 
 ::: tabs
 
-@tab 未央宫
+@tab 白云山
 
-<ImageMasonry :images="weiYangGongImages" />
+<ImageMasonry :images="baiYunShanImages" />
 
 :::
 
@@ -28,13 +28,13 @@ const getImgName = (imgNamePrefix, idx) => {
   return `${imgNamePrefix}-${idx < 9 ? 0 : ''}${idx + 1}`;
 }
 
-// 未央宫
-const getWeiYangGongImages = () => {
-  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/xian/weiyanggong/';
+// 白云山
+const getBaiYunShanImages = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/guangzhou/baiyunshan/';
   const arr = [];
 
-  Array.from({ length: 5 }).forEach((ele, idx) => {
-    const imgName = getImgName('weiyanggong', idx);
+  Array.from({ length: 6 }).forEach((ele, idx) => {
+    const imgName = getImgName('baiyunshan', idx);
     arr.push({
       imageSrc: `${prefix}${imgName}.jpg`,
       imageAlt: imgName
@@ -44,7 +44,7 @@ const getWeiYangGongImages = () => {
   return arr;
 }
 
-const weiYangGongImages = ref(getWeiYangGongImages());
+const baiYunShanImages = ref(getBaiYunShanImages());
 
 </script>
 
