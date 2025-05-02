@@ -47,7 +47,7 @@ const headBgUrl = 'https://memories.obs.cn-south-1.myhuaweicloud.com/tianshui/xi
 const cityItems = ref([
   {
     name: '深圳',
-    imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/gongyuan-06.jpg',
+    imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/dameisha/dameisha-01.jpg',
     date: '2018-12-13',
     nav: '/picture/shenzhen/'
   },

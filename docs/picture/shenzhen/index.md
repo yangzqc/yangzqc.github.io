@@ -33,6 +33,10 @@ next:
 
 <ImageMasonry :images="yangTaiShanImages" />
 
+@tab 大梅沙
+
+<ImageMasonry :images="daMeiShaImages" />
+
 :::
 
 <script setup>
@@ -151,11 +155,28 @@ const getYangTaiShanImages = () => {
   return arr;
 }
 
+// 大梅沙
+const getDaMeiShaImages = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/dameisha/';
+  const arr = [];
+
+  Array.from({ length: 1 }).forEach((ele, idx) => {
+    const imgName = getImgName('dameisha', idx);
+    arr.push({
+      imageSrc: `${prefix}${imgName}.jpg`,
+      imageAlt: imgName
+    })
+  });
+
+  return arr;
+}
+
 const gongYuanImages = ref(getGongYuanImages());
 const jiChangDongImages = ref(getJiChangDongImages());
 const fengHuangShanImages = ref(getFengHuangShanImages());
 const wuTongShanImages = ref(getWuTongShanImages());
 const yangTaiShanImages = ref(getYangTaiShanImages());
+const daMeiShaImages = ref(getDaMeiShaImages())
 
 </script>
 
