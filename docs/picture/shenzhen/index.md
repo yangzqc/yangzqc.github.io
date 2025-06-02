@@ -80,7 +80,7 @@ const getGongYuanImages = () => {
   const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/gongyuan/';
   const arr = [];
 
-  Array.from({ length: 13 }).forEach((ele, idx) => {
+  Array.from({ length: 12 }).forEach((ele, idx) => {
     const imgName = getImgName('gongyuan', idx);
     arr.push({
       imageSrc: `${prefix}${imgName}${getGongYuanImgSuffix(idx)}`,
@@ -128,7 +128,7 @@ const getWuTongShanImages = () => {
   const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/shenzhen/wutongshan/';
   const arr = [];
 
-  Array.from({ length: 22 }).forEach((ele, idx) => {
+  Array.from({ length: 19 }).forEach((ele, idx) => {
     const imgName = getImgName('wutongshan', idx);
     arr.push({
       imageSrc: `${prefix}${imgName}${getWuTongShanImgSuffix(idx)}`,
