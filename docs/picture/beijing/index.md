@@ -6,6 +6,9 @@ contributors: false
 prev:
   text: 广州
   link: /picture/guangzhou/
+next:
+  text: 承德
+  link: /picture/chengde/
 ---
 
 ::: tabs

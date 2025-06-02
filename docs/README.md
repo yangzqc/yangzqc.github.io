@@ -74,6 +74,12 @@ const cityItems = ref([
     imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/miaofengshan/miaofengshan-03.jpg',
     date: '2024-12-24',
     nav: '/picture/beijing/'
+  },
+  {
+    name: '承德',
+    imageUrl: 'https://memories.obs.cn-south-1.myhuaweicloud.com/chengde/bashangcaoyuan/bashangcaoyuan-82.jpg',
+    date: '2025-05-31',
+    nav: '/picture/chengde/'
   }
 ]);
 
