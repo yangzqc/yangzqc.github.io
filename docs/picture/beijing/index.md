@@ -33,6 +33,15 @@ next:
 
 <ImageMasonry :images="baDaLingChangChenImages" />
 
+@tab 天坛公园
+<ImageMasonry :images="tianTanGongYuanImages" />
+
+@tab 中关村公园
+<ImageMasonry :images="zhongGuanCunGongYuanImages" />
+
+@tab 北京大学
+<ImageMasonry :images="beiJingDaXueImages" />
+
 :::
 
 <script setup>
@@ -124,11 +133,62 @@ const getBaDaLingChangChenImages = () => {
   return arr;
 }
 
+// 天坛公园
+const getTianTanGongYuanImages = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/tiantangongyuan/';
+  const arr = [];
+
+  Array.from({ length: 33 }).forEach((ele, idx) => {
+    const imgName = getImgName('tiantangongyuan', idx);
+    arr.push({
+      imageSrc: `${prefix}${imgName}.jpg`,
+      imageAlt: imgName
+    });
+  });
+
+  return arr;
+}
+
+// 中关村公园
+const getZhongGuanCunGongYuanImages = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/zhongguancungongyuan/';
+  const arr = [];
+
+  Array.from({ length: 4 }).forEach((ele, idx) => {
+    const imgName = getImgName('zhongguancungongyuan', idx);
+    arr.push({
+      imageSrc: `${prefix}${imgName}.jpg`,
+      imageAlt: imgName
+    });
+  });
+
+  return arr;
+}
+
+// 北京大学
+const getBeiJingDaXueImages = () => {
+  const prefix = 'https://memories.obs.cn-south-1.myhuaweicloud.com/beijing/beijingdaxue/';
+  const arr = [];
+
+  Array.from({ length: 4 }).forEach((ele, idx) => {
+    const imgName = getImgName('beijingdaxue', idx);
+    arr.push({
+      imageSrc: `${prefix}${imgName}.jpg`,
+      imageAlt: imgName
+    });
+  });
+
+  return arr;
+}
+
 const changAnJieImages = ref(getChangAnJieImages());
 const yiHeYuanImages = ref(getYiHeYuanImages());
 const yuanMingYuanImages = ref(getYuanMingYuanImages());
 const miaoFengShanImages = ref(getMiaoFengShanImages());
 const baDaLingChangChenImages = ref(getBaDaLingChangChenImages());
+const tianTanGongYuanImages = ref(getTianTanGongYuanImages());
+const zhongGuanCunGongYuanImages = ref(getZhongGuanCunGongYuanImages());
+const beiJingDaXueImages = ref(getBeiJingDaXueImages());
 
 </script>
 
