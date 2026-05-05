@@ -1,4 +1,4 @@
-[remote "github"]
+[remote "origin"]
 	url = git@github.com:yangzqc/yangzqc.github.io.git
 
 [remote "gitcode"]
