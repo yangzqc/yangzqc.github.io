@@ -18,16 +18,22 @@ echo ""
 
 # 获取所有远程名称
 remotes=$(git remote)
+results=()
 
 for remote in $remotes; do
     print_msg TIP "推送 $BRANCH 分支到 $remote"
     if git push "$remote" "$BRANCH"; then
-        print_msg SUCCESS "推送 $remote 平台 $BRANCH 分支成功"
-        echo ""
+        results+=("$(print_msg SUCCESS "推送 $remote 平台 $BRANCH 分支成功")")
     else
-        print_msg ERROR "推送 $remote 平台 $BRANCH 分支失败"
-        echo ""
+        results+=("$(print_msg ERROR "推送 $remote 平台 $BRANCH 分支失败")")
     fi
 done
 
-print_msg END "所有推送完成"
+# 推送结果汇总
+echo ""
+print_msg TIP "推送结果汇总"
+for result in "${results[@]}"; do
+    echo "$result"
+done
+
+print_msg END "所有推送操作完成, 请检查推送结果是否符合预期!"
