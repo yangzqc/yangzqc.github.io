@@ -43,4 +43,5 @@ for result in "${results[@]}"; do
     echo "$result"
 done
 
+echo ""
 print_msg true END "所有推送操作完成, 请检查推送结果是否符合预期!"
