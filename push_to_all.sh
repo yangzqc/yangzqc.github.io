@@ -5,7 +5,7 @@
 BRANCH=${1:-dev}  # 默认分支为 dev，可通过参数指定
 
 # 推送前显示远程仓库信息
-echo "当前远程仓库配置："
+echo "[TIP]: 当前远程仓库配置："
 git remote -v
 echo ""
 
@@ -14,7 +14,11 @@ remotes=$(git remote)
 
 for remote in $remotes; do
     echo "推送 $BRANCH 分支到 $remote"
-    git push "$remote" "$BRANCH"
+    if git push "$remote" "$BRANCH"; then
+        echo "[SUCCESS]: 推送 $remote 成功"
+    else
+        echo "[ERROR]: 推送 $remote 失败"
+    fi
 done
 
-echo "所有推送完成"
+echo "[END]: 所有推送完成"
