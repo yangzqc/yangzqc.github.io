@@ -22,10 +22,10 @@ remotes=$(git remote)
 for remote in $remotes; do
     print_msg TIP "推送 $BRANCH 分支到 $remote"
     if git push "$remote" "$BRANCH"; then
-        print_msg SUCCESS "推送 $remote 成功"
+        print_msg SUCCESS "推送 $remote 平台 $BRANCH 分支成功"
         echo ""
     else
-        print_msg ERROR "推送 $remote 失败"
+        print_msg ERROR "推送 $remote 平台 $BRANCH 分支失败"
         echo ""
     fi
 done
