@@ -1,0 +1,8 @@
+[remote "github"]
+	url = git@github.com:yangzqc/yangzqc.github.io.git
+
+[remote "gitcode"]
+	url = https://gitcode.com/yangzqc/yangzqc.github.io.git
+
+[remote "gitee"]
+	url = https://gitee.com/yangzqc/yangzqc.github.io.git
