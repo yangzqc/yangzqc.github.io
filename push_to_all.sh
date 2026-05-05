@@ -4,8 +4,15 @@
 
 BRANCH=${1:-dev}  # 默认分支为 dev，可通过参数指定
 
+# 输出消息，type 可传 TIP/SUCCESS/ERROR/END
+print_msg() {
+    local type="$1"
+    local text="$2"
+    echo "--------[${type}]: ${text}"
+}
+
 # 推送前显示远程仓库信息
-echo "[TIP]: 当前远程仓库配置："
+print_msg TIP "当前远程仓库配置"
 git remote -v
 echo ""
 
@@ -13,12 +20,14 @@ echo ""
 remotes=$(git remote)
 
 for remote in $remotes; do
-    echo "推送 $BRANCH 分支到 $remote"
+    print_msg TIP "推送 $BRANCH 分支到 $remote"
     if git push "$remote" "$BRANCH"; then
-        echo "[SUCCESS]: 推送 $remote 成功"
+        print_msg SUCCESS "推送 $remote 成功"
+        echo ""
     else
-        echo "[ERROR]: 推送 $remote 失败"
+        print_msg ERROR "推送 $remote 失败"
+        echo ""
     fi
 done
 
-echo "[END]: 所有推送完成"
+print_msg END "所有推送完成"
